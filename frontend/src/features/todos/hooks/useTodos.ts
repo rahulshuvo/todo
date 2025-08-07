@@ -5,7 +5,8 @@ import { isValidEmail } from '../../../shared/utils/validation'
 export const useTodos = (
   userEmail: string,
   page: number = 1,
-  limit: number = 10
+  limit: number = 10,
+  shouldCall: boolean = true
 ) => {
   return useQuery({
     queryKey: ['todos', userEmail, page, limit],
@@ -18,5 +19,6 @@ export const useTodos = (
     refetchIntervalInBackground: false, // Only refetch when tab is active
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+    enabled: shouldCall
   })
 }

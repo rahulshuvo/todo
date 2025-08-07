@@ -22,7 +22,8 @@ export default function TodoPage() {
   const { data: todoResponse, isLoading } = useTodos(
     userEmail,
     currentPage,
-    itemsPerPage
+    itemsPerPage,
+    !showEmailInput // Only fetch if email input is not shown
   )
 
   // Mutation hooks
