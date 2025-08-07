@@ -1,7 +1,8 @@
+import TodoApp from './pages/TodoApp';
 function App() {
-
+  
   return (
-    <div>Hello</div>
+    <TodoApp />
   )
 }
 
