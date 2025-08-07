@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "../styles/EmailSetup.scss"
 import { MdEmail } from "react-icons/md"
+import { isValidEmail } from "../utils/validation"
 
 interface EmailSetupProps {
   onEmailSet: (email: string) => void
@@ -19,8 +20,8 @@ export default function EmailSetup({ onEmailSet, onEmailSkip }: EmailSetupProps)
       return
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(emailInput.trim())) {
+
+    if (!isValidEmail(emailInput.trim())) {
       setEmailError("Please enter a valid email address")
       return
     }
