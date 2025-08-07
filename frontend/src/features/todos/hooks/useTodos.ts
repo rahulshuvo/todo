@@ -1,7 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import { getTodos } from '../todoApi';
+import { isValidEmail } from '../../../shared/utils/validation'
 
-export const useTodos = (userEmail: string, page: number = 1, limit: number = 10) => {
+export const useTodos = (
+  userEmail: string,
+  page: number = 1,
+  limit: number = 10
+) => {
   return useQuery({
     queryKey: ['todos', userEmail, page, limit],
     queryFn: () => getTodos(userEmail, page, limit),
@@ -9,9 +14,9 @@ export const useTodos = (userEmail: string, page: number = 1, limit: number = 10
     gcTime: 2 * 60 * 1000, // 2 minutes - cache kept for 2 minutes
     refetchOnWindowFocus: false, // Don't refetch when window regains focus
     refetchOnReconnect: true, // Refetch when connection is restored
-    refetchInterval: 60 * 1000, // Auto-refetch every 60 seconds
+    refetchInterval: isValidEmail(userEmail) ? false : 5 * 1000, // Only auto-refetch for public todos
     refetchIntervalInBackground: false, // Only refetch when tab is active
     retry: 3,
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
-  });
-};
+  })
+}
