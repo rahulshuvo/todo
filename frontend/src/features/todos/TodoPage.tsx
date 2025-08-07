@@ -8,7 +8,6 @@ import { useTodos, useAddTodo, useUpdateTodo, useDeleteTodo } from './hooks'
 
 export default function TodoPage() {
   const [tasks, setTasks] = useState<Todo[]>([])
-  const [loading, setLoading] = useState(false)
   const [activeTab, setActiveTab] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage, setItemsPerPage] = useState(10)
@@ -35,7 +34,6 @@ export default function TodoPage() {
     if (todoResponse) {
       setTasks(todoResponse.todos)
     }
-    setLoading(isLoading)
   }, [todoResponse, isLoading])
 
   const addTask = async (title: string, deadline?: string) => {
@@ -157,7 +155,7 @@ export default function TodoPage() {
     setCurrentPage(1)
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="todo-app">
         <div className="loading-container">
