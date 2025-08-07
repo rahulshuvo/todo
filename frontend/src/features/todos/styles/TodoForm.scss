@@ -1,0 +1,52 @@
+@import '../../../shared/styles/global.scss';
+
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.todo-form__inputs {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.todo-form__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  &--main {
+    @media (max-width: 768px) {
+      grid-column: 1;
+    }
+  }
+}
+
+.todo-form__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.todo-form__error {
+  padding: 0.75rem;
+  background-color: $overdue-bg;
+  border: 1px solid $overdue-border;
+  border-radius: 0.375rem;
+  color: $overdue-text;
+  font-size: 0.875rem;
+}
+
+.todo-form__submit {
+  align-self: flex-start;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}

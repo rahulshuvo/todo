@@ -1,0 +1,66 @@
+@import '../styles/global.scss';
+
+.email-setup {
+  background-color: #dbeafe;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.email-setup__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.email-setup__header {
+  text-align: center;
+}
+
+.email-setup__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: $text-primary;
+}
+
+.email-setup__description {
+  font-size: 0.875rem;
+  color: $text-secondary;
+  margin: 0;
+}
+
+.email-setup__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.email-setup__input-group {
+  display: flex;
+  gap: 0.5rem;
+  
+  .input {
+    flex: 1;
+  }
+}
+
+.email-setup__error {
+  padding: 0.75rem;
+  background-color: $overdue-bg;
+  border: 1px solid $overdue-border;
+  border-radius: 0.375rem;
+  color: $overdue-text;
+  font-size: 0.875rem;
+}
+
+.mail-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+@media (max-width: 768px) {
+  .email-setup__input-group {
+    flex-direction: column;
+  }
+}

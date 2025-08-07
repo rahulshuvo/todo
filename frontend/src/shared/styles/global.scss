@@ -1,0 +1,233 @@
+// Variables
+$primary-color: #3b82f6;
+$primary-hover: #2563eb;
+$secondary-color: #6b7280;
+$success-color: #10b981;
+$danger-color: #ef4444;
+$warning-color: #f59e0b;
+$background-color: #f8fafc;
+$card-background: #ffffff;
+$border-color: #e2e8f0;
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$text-muted: #9ca3af;
+$overdue-bg: #fef2f2;
+$overdue-border: #fecaca;
+$overdue-text: #dc2626;
+
+// Mixins
+@mixin button-base {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $primary-color;
+  color: white;
+  
+  &:hover:not(:disabled) {
+    background-color: $primary-hover;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: transparent;
+  color: $text-primary;
+  border-color: $border-color;
+  
+  &:hover:not(:disabled) {
+    background-color: #f1f5f9;
+  }
+}
+
+@mixin button-ghost {
+  @include button-base;
+  background-color: transparent;
+  color: $text-secondary;
+  
+  &:hover:not(:disabled) {
+    background-color: #f1f5f9;
+    color: $text-primary;
+  }
+}
+
+@mixin button-danger {
+  @include button-base;
+  background-color: transparent;
+  color: $danger-color;
+  
+  &:hover:not(:disabled) {
+    background-color: #fef2f2;
+    color: #dc2626;
+  }
+}
+
+@mixin input-base {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid $border-color;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease-in-out;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+  
+  &::placeholder {
+    color: $text-muted;
+  }
+}
+
+@mixin card {
+  background-color: $card-background;
+  border: 1px solid $border-color;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+// Global styles
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: $background-color;
+  color: $text-primary;
+  line-height: 1.5;
+}
+
+// Todo App Styles
+.todo-app {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.todo-container {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.todo-header {
+  @include card;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.todo-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+  color: $text-primary;
+}
+
+.todo-main {
+  @include card;
+  padding: 1.5rem;
+}
+
+.todo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tasks-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// Loading styles
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid $border-color;
+  border-top: 2px solid $primary-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Utility classes
+.btn-primary {
+  @include button-primary;
+}
+
+.btn-secondary {
+  @include button-secondary;
+}
+
+.btn-ghost {
+  @include button-ghost;
+}
+
+.btn-danger {
+  @include button-danger;
+}
+
+.input {
+  @include input-base;
+}
+
+.card {
+  @include card;
+}
+
+// Undo button specific styles
+.undo-button {
+  @include button-secondary;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .todo-app {
+    padding: 0.5rem;
+  }
+  
+  .todo-header,
+  .todo-main {
+    padding: 1rem;
+  }
+  
+  .todo-title {
+    font-size: 1.5rem;
+  }
+}

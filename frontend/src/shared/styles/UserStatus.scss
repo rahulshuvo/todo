@@ -1,0 +1,45 @@
+@import '../styles/global.scss';
+
+.user-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.user-status__authenticated {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  
+  &--primary {
+    background-color: $primary-color;
+    color: white;
+  }
+  
+  &--secondary {
+    background-color: #f1f5f9;
+    color: #64748b;
+  }
+}
+
+.user-icon,
+.logout-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.btn-ghost--small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+}

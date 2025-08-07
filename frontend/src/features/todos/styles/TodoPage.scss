@@ -1,0 +1,89 @@
+@import '../../../shared/styles/global.scss';
+.todo-app {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.todo-container {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.todo-header {
+  @include card;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.todo-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+  color: $text-primary;
+}
+
+.todo-main {
+  @include card;
+  padding: 1.5rem;
+}
+
+.todo-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.tasks-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// Loading styles
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid $border-color;
+  border-top: 2px solid $primary-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Undo button specific styles
+.undo-button {
+  @include button-secondary;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .todo-app {
+    padding: 0.5rem;
+  }
+  
+  .todo-header,
+  .todo-main {
+    padding: 1rem;
+  }
+  
+  .todo-title {
+    font-size: 1.5rem;
+  }
+}
