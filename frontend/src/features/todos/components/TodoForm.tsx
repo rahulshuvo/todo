@@ -1,40 +1,50 @@
 import { useState } from "react"
-import "../styles/TodoForm.scss"
+import { FaCalendarAlt } from 'react-icons/fa'
+import '../styles/TodoForm.scss'
 
 interface TodoFromProps {
   onAddTask: (title: string, deadline?: string) => Promise<void>
 }
 
 export default function TodoFrom({ onAddTask }: TodoFromProps) {
-  const [newTask, setNewTask] = useState("")
-  const [newDeadline, setNewDeadline] = useState("")
-  const [error, setError] = useState("")
+  const [newTask, setNewTask] = useState('')
+  const [newDeadline, setNewDeadline] = useState('')
+  const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async () => {
-    setError("")
+    setError('')
 
     if (newTask.trim().length <= 10) {
-      setError("Task must be longer than 10 characters")
+      setError('Task must be longer than 10 characters')
       return
     }
 
     setIsSubmitting(true)
     try {
       await onAddTask(newTask.trim(), newDeadline || undefined)
-      setNewTask("")
-      setNewDeadline("")
+      setNewTask('')
+      setNewDeadline('')
     } catch (err: unknown) {
-      setError("Failed to add task")
-      console.error("Failed to add task:", err)
+      setError('Failed to add task')
+      console.error('Failed to add task:', err)
     } finally {
       setIsSubmitting(false)
     }
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       handleSubmit()
+    }
+  }
+
+  const handleCalendarClick = () => {
+    const dateInput = document.getElementById(
+      'deadline-mobile'
+    ) as HTMLInputElement
+    if (dateInput) {
+      dateInput.showPicker()
     }
   }
 
@@ -42,22 +52,49 @@ export default function TodoFrom({ onAddTask }: TodoFromProps) {
     <div className="todo-form">
       <div className="todo-form__inputs">
         <div className="todo-form__input-group todo-form__input-group--main">
-          <label htmlFor="task" className="todo-form__label">New Task</label>
-          <input
-            id="task"
-            type="text"
-            className="input"
-            placeholder="Enter a task (more than 10 characters)"
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            onKeyDown={handleKeyDown}
-            disabled={isSubmitting}
-          />
+          <label htmlFor="task" className="todo-form__label">
+            New Task
+          </label>
+          <div className="todo-form__input-wrapper">
+            <input
+              id="task"
+              type="text"
+              className="input todo-form__task-input"
+              placeholder="Enter a task (more than 10 characters)"
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+              onKeyDown={handleKeyDown}
+              disabled={isSubmitting}
+            />
+            <button
+              type="button"
+              className="todo-form__deadline-toggle"
+              onClick={handleCalendarClick}
+              aria-label="Set deadline"
+            >
+              <FaCalendarAlt />
+              {newDeadline && (
+                <span className="todo-form__deadline-display">
+                  {new Date(newDeadline).toLocaleDateString()}
+                </span>
+              )}
+            </button>
+            <input
+              id="deadline-mobile"
+              type="date"
+              className="todo-form__deadline-input-hidden"
+              value={newDeadline}
+              onChange={(e) => setNewDeadline(e.target.value)}
+              disabled={isSubmitting}
+            />
+          </div>
         </div>
-        <div className="todo-form__input-group">
-          <label htmlFor="deadline" className="todo-form__label">Deadline (Optional)</label>
+        <div className="todo-form__input-group todo-form__input-group--desktop">
+          <label htmlFor="deadline-desktop" className="todo-form__label">
+            Deadline (Optional)
+          </label>
           <input
-            id="deadline"
+            id="deadline-desktop"
             type="date"
             className="input"
             value={newDeadline}
@@ -67,18 +104,14 @@ export default function TodoFrom({ onAddTask }: TodoFromProps) {
         </div>
       </div>
 
-      {error && (
-        <div className="todo-form__error">
-          {error}
-        </div>
-      )}
+      {error && <div className="todo-form__error">{error}</div>}
 
-      <button 
-        className="btn-primary todo-form__submit" 
+      <button
+        className="btn-primary todo-form__submit"
         onClick={handleSubmit}
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Adding..." : "Add Task"}
+        {isSubmitting ? 'Adding...' : 'Add Task'}
       </button>
     </div>
   )

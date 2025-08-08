@@ -26,6 +26,79 @@
       grid-column: 1;
     }
   }
+
+  &--desktop {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+.todo-form__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.todo-form__task-input {
+  flex: 1;
+  padding-right: 3rem;
+}
+
+.todo-form__deadline-toggle {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: color 0.2s ease;
+  display: none;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.875rem;
+  min-width: auto;
+  max-width: calc(100% - 1.5rem);
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    color: #374151;
+  }
+}
+
+.todo-form__deadline-display {
+  font-size: 0.75rem;
+  color: #374151;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+
+.todo-form__deadline-input {
+  margin-top: 0.5rem;
+  
+  @media (min-width: 769px) {
+    display: none;
+  }
+}
+
+.todo-form__deadline-input-hidden {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  
+  @media (min-width: 769px) {
+    display: none;
+  }
 }
 
 .todo-form__label {
