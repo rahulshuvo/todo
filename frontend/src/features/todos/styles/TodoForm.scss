@@ -42,12 +42,15 @@
 
 .todo-form__task-input {
   flex: 1;
-  padding-right: 3rem;
+  @media screen and (max-width: 768px) {
+    padding-right: 2rem!important;
+    
+  }
 }
 
 .todo-form__deadline-toggle {
   position: absolute;
-  right: 0.75rem;
+  right: 0.25rem;
   background: none;
   border: none;
   color: #6b7280;
