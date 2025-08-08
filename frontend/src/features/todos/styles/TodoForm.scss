@@ -59,11 +59,6 @@
   border-radius: 0.25rem;
   transition: color 0.2s ease;
   display: none;
-  gap: 0.5rem;
-  align-items: center;
-  font-size: 0.875rem;
-  min-width: auto;
-  max-width: calc(100% - 1.5rem);
 
   @media (max-width: 768px) {
     display: flex;
@@ -104,10 +99,32 @@
   }
 }
 
+.todo-form__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: auto;
+}
+
+.todo-form__selected-deadline {
+  font-size: 0.75rem;
+  color: #6b7280;
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d1d5db;
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
 .todo-form__label {
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
+  margin: 0;
 }
 
 .todo-form__error {

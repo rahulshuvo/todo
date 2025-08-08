@@ -52,9 +52,16 @@ export default function TodoFrom({ onAddTask }: TodoFromProps) {
     <div className="todo-form">
       <div className="todo-form__inputs">
         <div className="todo-form__input-group todo-form__input-group--main">
-          <label htmlFor="task" className="todo-form__label">
-            New Task
-          </label>
+          <div className="todo-form__label-row">
+            <label htmlFor="task" className="todo-form__label">
+              New Task
+            </label>
+            {newDeadline && (
+              <span className="todo-form__selected-deadline">
+                {new Date(newDeadline).toLocaleDateString()}
+              </span>
+            )}
+          </div>
           <div className="todo-form__input-wrapper">
             <input
               id="task"
@@ -73,11 +80,6 @@ export default function TodoFrom({ onAddTask }: TodoFromProps) {
               aria-label="Set deadline"
             >
               <FaCalendarAlt />
-              {newDeadline && (
-                <span className="todo-form__deadline-display">
-                  {new Date(newDeadline).toLocaleDateString()}
-                </span>
-              )}
             </button>
             <input
               id="deadline-mobile"
