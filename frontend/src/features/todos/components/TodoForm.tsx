@@ -47,7 +47,7 @@ export default function TodoFrom({ onAddTask }: TodoFromProps) {
             id="task"
             type="text"
             className="input"
-            placeholder="Enter a task (min 11 characters)"
+            placeholder="Enter a task (more than 10 characters)"
             value={newTask}
             onChange={(e) => setNewTask(e.target.value)}
             onKeyDown={handleKeyDown}
