@@ -43,6 +43,11 @@
   .input {
     flex: 1;
   }
+  .email-setup__form-buttons{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
 }
 
 .email-setup__error {
@@ -62,5 +67,8 @@
 @media (max-width: 768px) {
   .email-setup__input-group {
     flex-direction: column;
+    .email-setup__form-buttons{
+      justify-content: space-between;
+    }
   }
 }

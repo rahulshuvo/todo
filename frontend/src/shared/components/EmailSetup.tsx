@@ -54,6 +54,7 @@ export default function EmailSetup({ onEmailSet, onEmailSkip }: EmailSetupProps)
               onChange={(e) => setEmailInput(e.target.value)}
               onKeyDown={handleKeyDown}
             />
+            <div className="email-setup__form-buttons">
             <button 
               className="btn-primary" 
               onClick={handleSetEmail} 
@@ -65,6 +66,7 @@ export default function EmailSetup({ onEmailSet, onEmailSkip }: EmailSetupProps)
             <button className="btn-secondary" onClick={onEmailSkip}>
               Skip
             </button>
+            </div>
           </div>
 
           {emailError && (
