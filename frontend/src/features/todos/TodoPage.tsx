@@ -42,7 +42,17 @@ export default function TodoPage() {
       return
     }
 
+    // Optimistically add the task to the UI
+    const newTask: Todo = {
+      id: crypto.randomUUID(), // Temporary ID for optimistic update
+      title: title.trim(),
+      email: userEmail || undefined,
+      deadline: deadline || undefined,
+      createdAt: new Date().toISOString(),
+      done: false,
+    }
     try {
+      setTasks((prevTasks) => [newTask, ...prevTasks])
       await addTodoMutation.mutateAsync({
         title: title.trim(),
         email: userEmail || undefined,
@@ -50,38 +60,63 @@ export default function TodoPage() {
       })
     } catch (error) {
       console.error('Failed to add task:', error)
+      // If the add fails, remove the optimistically added task
+      setTasks((prevTasks) =>
+        prevTasks.filter((task) => task.id !== newTask.id)
+      )
       throw error
     }
   }
 
   const toggleTask = async (id: string) => {
-    try {
-      const task = tasks.find((t) => t.id === id)
-      if (!task) return
+    const task = tasks.find((t) => t.id === id)
+    if (!task) return
 
-      const newDoneState = !task.done
+    const newDoneState = !task.done
+    try {
+      // Optimistically update the UI
+      setTasks((prevTasks) =>
+        prevTasks.map((t) => (t.id === id ? { ...t, done: newDoneState } : t))
+      )
       await updateTodoMutation.mutateAsync({ id, isDone: newDoneState })
     } catch (error) {
       console.error('Failed to update task:', error)
+      // Restore the task state if update fails
+      setTasks((prevTasks) =>
+        prevTasks.map((t) => (t.id === id ? { ...t, done: !newDoneState } : t))
+      )
     }
   }
 
   const deleteTask = async (id: string) => {
+    const taskToDelete = tasks.find((task) => task.id === id)
+    if (!taskToDelete) return
+    // Store the original position
+    const originalIndex = tasks.findIndex((task) => task.id === id)
     try {
-      const taskToDelete = tasks.find((task) => task.id === id)
-      if (!taskToDelete) return
-
       // Remove from UI immediately (optimistic update)
       setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id))
 
       // Delete from server
       await deleteTodoMutation.mutateAsync(id)
-
-      // Note: React Query will automatically refetch and update the cache
-      // No need to manually restore on error since React Query handles it
     } catch (error) {
       console.error('Failed to delete task:', error)
-      // React Query will automatically revert the optimistic update on error
+      // Restore the task back to UI since deletion failed
+      setTasks((prevTasks) => {
+        // Check if task is already in the list to avoid duplicates
+        const taskExists = prevTasks.some((task) => task.id === id)
+        // if (!taskExists) {
+        //   return [...prevTasks, taskToDelete]
+        // }
+        if (!taskExists) {
+          const newTasks = [...prevTasks]
+          // Insert at original position, or at the end if position is invalid
+          const insertIndex = Math.min(originalIndex, newTasks.length)
+          newTasks.splice(insertIndex, 0, taskToDelete)
+          return newTasks
+        }
+        return prevTasks
+      })
     }
   }
 
