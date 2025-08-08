@@ -1,13 +1,18 @@
-import { FaUser } from "react-icons/fa"
-import "../styles/UserStatus.scss"
-import { HiLogout } from "react-icons/hi"
+import { FaUser } from 'react-icons/fa'
+import '../styles/UserStatus.scss'
+import { HiLogout } from 'react-icons/hi'
 
 interface UserStatusProps {
   userEmail: string
   onClearEmail: () => void
+  showEmailInput?: boolean
 }
 
-export default function UserStatus({ userEmail, onClearEmail }: UserStatusProps) {
+export default function UserStatus({
+  userEmail,
+  onClearEmail,
+  showEmailInput,
+}: UserStatusProps) {
   return (
     <div className="user-status">
       {userEmail ? (
@@ -16,16 +21,18 @@ export default function UserStatus({ userEmail, onClearEmail }: UserStatusProps)
             <FaUser />
             {userEmail}
           </div>
-          <button className="btn-ghost btn-ghost--small" onClick={onClearEmail}>
-            <HiLogout />
-            Switch User
-          </button>
         </div>
       ) : (
         <div className="user-badge user-badge--secondary">
           <FaUser className="user-icon" />
           Public Mode
         </div>
+      )}
+      {!showEmailInput && (
+        <button className="btn-ghost btn-ghost--small" onClick={onClearEmail}>
+          <HiLogout />
+          Switch User
+        </button>
       )}
     </div>
   )

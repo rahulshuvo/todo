@@ -206,7 +206,11 @@ export default function TodoPage() {
       <div className="todo-container">
         <header className="todo-header">
           <h1 className="todo-title">ToDo</h1>
-          <UserStatus userEmail={userEmail} onClearEmail={handleEmailClear} />
+          <UserStatus
+            userEmail={userEmail}
+            onClearEmail={handleEmailClear}
+            showEmailInput={showEmailInput}
+          />
         </header>
 
         <main className="todo-main">
