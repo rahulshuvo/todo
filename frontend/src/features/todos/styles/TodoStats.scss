@@ -1,11 +1,11 @@
-@import '../../../shared/styles/global.scss';
+@use  '../../../shared/styles/global.scss';
 
 .todo-stats {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.875rem;
-  color: $text-secondary;
+  color: global.$text-secondary;
   gap: 1rem;
   
   @media (max-width: 768px) {
