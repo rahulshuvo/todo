@@ -1,4 +1,4 @@
-@import '../styles/global.scss';
+@use '../styles/global.scss';
 
 .email-setup {
   background-color: #dbeafe;
@@ -21,12 +21,12 @@
   font-size: 1.125rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
-  color: $text-primary;
+  color: global.$text-primary;
 }
 
 .email-setup__description {
   font-size: 0.875rem;
-  color: $text-secondary;
+  color: global.$text-secondary;
   margin: 0;
 }
 
@@ -47,10 +47,10 @@
 
 .email-setup__error {
   padding: 0.75rem;
-  background-color: $overdue-bg;
-  border: 1px solid $overdue-border;
+  background-color: global.$overdue-bg;
+  border: 1px solid global.$overdue-border;
   border-radius: 0.375rem;
-  color: $overdue-text;
+  color: global.$overdue-text;
   font-size: 0.875rem;
 }
 

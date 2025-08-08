@@ -1,4 +1,4 @@
-@import '../styles/global.scss';
+@use '../styles/global.scss';
 
 .user-status {
   display: flex;
@@ -23,7 +23,7 @@
   font-weight: 500;
   
   &--primary {
-    background-color: $primary-color;
+    background-color: global.$primary-color;
     color: white;
   }
   

@@ -1,7 +1,7 @@
-@import '../../../shared/styles/global.scss';
+@use '../../../shared/styles/global.scss';
 
 .todo-table {
-  border: 1px solid $border-color;
+  border: 1px solid global.$border-color;
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -25,7 +25,7 @@
   font-weight: 600;
   font-size: 0.875rem;
   color: #374151;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid global.$border-color;
   
   &--checkbox {
     width: 3rem;
@@ -73,8 +73,8 @@
   }
   
   &--overdue {
-    background-color: $overdue-bg;
-    border-color: $overdue-border;
+    background-color: global.$overdue-bg;
+    border-color: global.$overdue-border;
     
     &:hover {
       background-color: #fde8e8;
@@ -92,16 +92,16 @@
   
   &--completed {
     text-decoration: line-through;
-    color: $text-muted;
+    color: global.$text-muted;
   }
   
   &--overdue {
-    color: $overdue-text;
+    color: global.$overdue-text;
     font-weight: 600;
   }
   
   &--muted {
-    color: $text-secondary;
+    color: global.$text-secondary;
   }
 }
 
@@ -117,7 +117,7 @@
   gap: 0.25rem;
   
   &--overdue {
-    color: $overdue-text;
+    color: global.$overdue-text;
   }
 }
 
@@ -132,7 +132,7 @@
 }
 
 .todo-table__no-deadline {
-  color: $text-muted;
+  color: global.$text-muted;
   font-size: 0.875rem;
 }
 
@@ -142,7 +142,7 @@
 
 .todo-table__empty {
   text-align: center;
-  color: $text-muted;
+  color: global.$text-muted;
   padding: 2rem;
   font-style: italic;
 }

@@ -1,4 +1,4 @@
-@import '../styles/global.scss';
+@use '../styles/global.scss';
 
 .pagination {
   display: flex;
@@ -26,7 +26,7 @@
 
 .pagination__label {
   font-size: 0.875rem;
-  color: $text-secondary;
+  color: global.$text-secondary;
 }
 
 .pagination__select {
@@ -39,7 +39,7 @@
   
   &:focus {
     outline: none;
-    border-color: $primary-color;
+    border-color: global.$primary-color;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   }
 }
@@ -76,7 +76,7 @@
 
 .pagination__ellipsis {
   padding: 0 0.5rem;
-  color: $text-muted;
+  color: global.$text-muted;
   font-size: 0.875rem;
 }
 
@@ -97,17 +97,17 @@
   
   &:hover {
     background-color: #f9fafb;
-    border-color: $text-muted;
+    border-color: global.$text-muted;
   }
   
   &--active {
-    background-color: $primary-color;
-    border-color: $primary-color;
+    background-color: global.$primary-color;
+    border-color: global.$primary-color;
     color: white;
     
     &:hover {
-      background-color: $primary-hover;
-      border-color: $primary-hover;
+      background-color: global.$primary-hover;
+      border-color: global.$primary-hover;
     }
   }
 }

@@ -1,4 +1,4 @@
-@import '../../../shared/styles/global.scss';
+@use '../../../shared/styles/global.scss';
 .todo-app {
   min-height: 100vh;
   padding: 1rem;
@@ -10,7 +10,7 @@
 }
 
 .todo-header {
-  @include card;
+  @include global.card;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   text-align: center;
@@ -20,11 +20,11 @@
   font-size: 2rem;
   font-weight: bold;
   margin: 0 0 1rem 0;
-  color: $text-primary;
+  color: global.$text-primary;
 }
 
 .todo-main {
-  @include card;
+  @include global.card;
   padding: 1.5rem;
 }
 
@@ -53,8 +53,8 @@
 .loading-spinner {
   width: 2rem;
   height: 2rem;
-  border: 2px solid $border-color;
-  border-top: 2px solid $primary-color;
+  border: 2px solid global.$border-color;
+  border-top: 2px solid global.$primary-color;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -66,7 +66,7 @@
 
 // Undo button specific styles
 .undo-button {
-  @include button-secondary;
+  @include global.button-secondary;
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
   margin-left: 0.5rem;

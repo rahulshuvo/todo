@@ -1,4 +1,4 @@
-@import '../../../shared/styles/global.scss';
+@use '../../../shared/styles/global.scss';
 
 .todo-form {
   display: flex;
@@ -36,10 +36,10 @@
 
 .todo-form__error {
   padding: 0.75rem;
-  background-color: $overdue-bg;
-  border: 1px solid $overdue-border;
+  background-color: global.$overdue-bg;
+  border: 1px solid global.$overdue-border;
   border-radius: 0.375rem;
-  color: $overdue-text;
+  color: global.$overdue-text;
   font-size: 0.875rem;
 }
 
