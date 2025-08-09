@@ -11,6 +11,7 @@ import {
   TodoStats,
 } from './components'
 import { useTodos, useAddTodo, useUpdateTodo, useDeleteTodo } from './hooks'
+import { toast } from 'sonner'
 
 export default function TodoPage() {
   const [tasks, setTasks] = useState<Todo[]>([])
@@ -24,12 +25,18 @@ export default function TodoPage() {
   const [showEmailInput, setShowEmailInput] = useState(!userEmail)
 
   // Load tasks with backend pagination
-  const { data: todoResponse, isLoading } = useTodos(
+  const { data: todoResponse, isLoading, isError } = useTodos(
     userEmail,
     currentPage,
     itemsPerPage,
     !showEmailInput // Only fetch if email input is not shown
   )
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('Failed to load tasks')
+    }
+  }, [isError])
 
   // Mutation hooks
   const addTodoMutation = useAddTodo(userEmail)
@@ -66,6 +73,7 @@ export default function TodoPage() {
       })
     } catch (error) {
       console.error('Failed to add task:', error)
+      toast.error('Failed to add task')
       // If the add fails, remove the optimistically added task
       setTasks((prevTasks) =>
         prevTasks.filter((task) => task.id !== newTask.id)
@@ -87,6 +95,7 @@ export default function TodoPage() {
       await updateTodoMutation.mutateAsync({ id, isDone: newDoneState })
     } catch (error) {
       console.error('Failed to update task:', error)
+      toast.error('Failed to update task')
       // Restore the task state if update fails
       setTasks((prevTasks) =>
         prevTasks.map((t) => (t.id === id ? { ...t, done: !newDoneState } : t))
@@ -107,6 +116,7 @@ export default function TodoPage() {
       await deleteTodoMutation.mutateAsync(id)
     } catch (error) {
       console.error('Failed to delete task:', error)
+      toast.error('Failed to delete task')
       // Restore the task back to UI since deletion failed
       setTasks((prevTasks) => {
         // Check if task is already in the list to avoid duplicates
