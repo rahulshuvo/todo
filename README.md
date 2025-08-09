@@ -343,6 +343,36 @@ npm run lint        # Run ESLint
 
 ## Testing
 
+### Frontend Testing Setup
+The frontend includes a comprehensive Jest testing setup with:
+
+- **React Testing Library** for component testing
+- **TypeScript support** with ts-jest
+- **JSDOM environment** for browser simulation
+- **CSS/SCSS mocking** with identity-obj-proxy
+- **Mock setup** for APIs and browser features
+
+#### Test Structure:
+```
+frontend/
+├── jest.config.cjs          # Jest configuration for ES modules
+├── src/
+│   ├── setupTests.ts        # Test environment setup
+│   └── __tests__/
+│       ├── App.test.tsx     # App component tests
+│       ├── simple.test.ts   # Basic functionality tests
+│       └── features/todos/
+│           └── TodoPage.test.tsx  # TodoPage component tests
+```
+
+#### Running Frontend Tests:
+```bash
+cd frontend
+npm test              # Run all tests
+npm run test:watch    # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
+```
+
 ### Manual Testing Checklist
 - [ ] Create todo with valid title (>10 characters)
 - [ ] Create todo with invalid title (≤10 characters)
