@@ -4,6 +4,11 @@
   border: 1px solid global.$border-color;
   border-radius: 0.5rem;
   overflow: hidden;
+  display: block;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .todo-table__container {

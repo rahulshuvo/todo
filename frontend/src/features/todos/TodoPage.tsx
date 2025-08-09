@@ -3,7 +3,13 @@ import './styles/TodoPage.scss'
 import '../../shared/styles/global.scss'
 import type { Todo } from './types'
 import { UserStatus, EmailSetup, Pagination } from '../../shared/components'
-import { TodoForm, TodoTabs, TodoTable, TodoStats } from './components'
+import {
+  TodoForm,
+  TodoTabs,
+  TodoTable,
+  TodoCards,
+  TodoStats,
+} from './components'
 import { useTodos, useAddTodo, useUpdateTodo, useDeleteTodo } from './hooks'
 
 export default function TodoPage() {
@@ -231,7 +237,18 @@ export default function TodoPage() {
                   isOverdue={isOverdue}
                 />
 
+                {/* Desktop Table View */}
                 <TodoTable
+                  tasks={getPaginatedTasks()}
+                  onToggleTask={toggleTask}
+                  onDeleteTask={deleteTask}
+                  isOverdue={isOverdue}
+                  isEmpty={getFilteredTasks().length === 0}
+                  activeTab={activeTab}
+                />
+
+                {/* Mobile Cards View */}
+                <TodoCards
                   tasks={getPaginatedTasks()}
                   onToggleTask={toggleTask}
                   onDeleteTask={deleteTask}
