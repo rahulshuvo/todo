@@ -43,9 +43,6 @@ export default function TodoTable({
               <th className="todo-table__th todo-table__th--date">
                 Deadline
               </th>
-              <th className="todo-table__th todo-table__th--date">
-                Created
-              </th>
               <th className="todo-table__th todo-table__th--actions">Actions</th>
             </tr>
           </thead>
@@ -96,9 +93,6 @@ export default function TodoTable({
                     ) : (
                       <span className="todo-table__no-deadline">No deadline</span>
                     )}
-                  </td>
-                  <td className="todo-table__td todo-table__td--muted">
-                    {formatDate(task.createdAt)}
                   </td>
                   <td className="todo-table__td">
                     <button
