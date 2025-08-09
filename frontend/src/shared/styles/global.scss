@@ -118,48 +118,6 @@ body {
   line-height: 1.5;
 }
 
-// Todo App Styles
-.todo-app {
-  min-height: 100vh;
-  padding: 1rem;
-}
-
-.todo-container {
-  max-width: 64rem;
-  margin: 0 auto;
-}
-
-.todo-header {
-  @include card;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.todo-title {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0 0 1rem 0;
-  color: $text-primary;
-}
-
-.todo-main {
-  @include card;
-  padding: 1.5rem;
-}
-
-.todo-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.tasks-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
 // Loading styles
 .loading-container {
   display: flex;
@@ -207,28 +165,4 @@ body {
 
 .card {
   @include card;
-}
-
-// Undo button specific styles
-.undo-button {
-  @include button-secondary;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  margin-left: 0.5rem;
-}
-
-// Responsive design
-@media (max-width: 768px) {
-  .todo-app {
-    padding: 0.5rem;
-  }
-  
-  .todo-header,
-  .todo-main {
-    padding: 1rem;
-  }
-  
-  .todo-title {
-    font-size: 1.5rem;
-  }
 }
