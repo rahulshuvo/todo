@@ -44,7 +44,25 @@ export default function TodoFrom({ onAddTask }: TodoFromProps) {
       'deadline-mobile'
     ) as HTMLInputElement
     if (dateInput) {
-      dateInput.showPicker()
+      // Focus the input first
+      dateInput.focus()
+
+      // Try showPicker if supported, otherwise just focus
+      try {
+        if (
+          'showPicker' in dateInput &&
+          typeof dateInput.showPicker === 'function'
+        ) {
+          dateInput.showPicker()
+        } else {
+          // Fallback: simulate click to trigger picker
+          dateInput.click()
+        }
+      } catch (error) {
+        // If showPicker fails, just focus the input
+        console.log('showPicker not supported, using focus', error)
+        dateInput.focus()
+      }
     }
   }
 
